@@ -1,0 +1,80 @@
+
+#!/bin/bash
+
+# WALLPAPERS PATH
+DIR="$HOME/wallpaper"
+
+# Transition config (type swww img --help for more settings
+FPS=60
+TYPE="any"
+DURATION=3
+
+# rofi theme
+ROFI_THEME="$HOME/.config/rofi/wallpaper.rasi"
+
+SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --resize crop"
+
+
+mapfile -d '' PICS < <(
+  find "$DIR" -maxdepth 1 -type f \
+    \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) \
+    -print0
+)
+
+if [ "${#PICS[@]}" -eq 0 ]; then
+  echo "No wallpapers found in $DIR"
+  exit 1
+fi
+
+RANDOM_PIC=${PICS[ $RANDOM % ${#PICS[@]} ]}
+RANDOM_PIC_NAME="random"
+
+# ROFI
+if ! command -v rofi >/dev/null 2>&1; then
+  echo "rofi not found. Install rofi-wayland or rofi."
+  exit 1
+fi
+
+# to check if swaybg is running
+
+if [[ $(pidof swaybg) ]]; then
+  pkill swaybg
+fi
+
+## Rofi Command
+rofi_command="rofi -dmenu -i -matching fuzzy -p choose... -show-icons -theme $ROFI_THEME"
+
+menu(){
+    # Here we are looping in the PICS array that is composed of all images in the $DIR
+    # folder 
+    for pic_path in "${PICS[@]}"; do
+        # dmenu format: label\0icon\x1f/path/to/image
+        printf "%s\0icon\x1f%s\n" "$pic_path" "$pic_path"
+    done
+
+    printf "%s\0icon\x1f%s\n" "$RANDOM_PIC_NAME" "$RANDOM_PIC"
+}
+
+swww query || swww-daemon
+
+main() {
+    choice=$(menu | ${rofi_command})
+
+    # no choice case
+    if [[ -z $choice ]]; then return; fi
+
+    # random choice case
+    if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
+        swww img "$RANDOM_PIC" $SWWW_PARAMS
+        return
+    fi
+    
+    swww img "$choice" $SWWW_PARAMS
+}
+
+main
+
+# Uncomment to launch something if a choice was made 
+# if [[ -n "$choice" ]]; then
+    # Restart Waybar
+# fi

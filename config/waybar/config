@@ -1,0 +1,141 @@
+// -*- mode: jsonc -*-
+{
+  "height": 30,
+  "spacing": 4,
+
+  "modules-left": [
+    "custom/lframe",
+    "hyprland/workspaces",
+    "custom/rframe",
+    "tray"
+  ],
+  "modules-center": [
+    "custom/now-playing"
+  ],
+  "modules-right": [
+    "custom/cava",
+    "custom/space",
+    "custom/space",
+    //"custom/tire",
+    //"pulseaudio",
+    "custom/rframe",
+    "custom/ram",
+    "custom/space",
+    "custom/rframe",
+    "clock",
+    "custom/lframe",
+    "hyprland/language",
+    "custom/space"
+  ],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "⚀",
+      "2": "⚁",
+      "3": "⚂",
+      "4": "⚃",
+      "5": "⚄",
+      "6": "⚅",
+      "default": "✞"
+    }
+  },
+
+  "hyprland/language": {
+    "format": "{}",
+    "format-us": "E",
+    "format-en": "E",
+    "format-ru": "R",
+    "min-length": 1,
+    "max-length": 1,
+    "tooltip": false
+  },
+
+  "custom/ram": {
+    "format": "{}",
+    "interval": 2,
+    "exec": "/home/ze/.config/waybar/scripts/ram_usage.sh",
+    "on-click": "/home/ze/.config/waybar/scripts/ram_usage.sh next"
+  },
+
+  "custom/cava": {
+    "exec": "/home/ze/.config/waybar/scripts/cava.sh",
+    "tail": true,
+    "format": "{}",
+
+    "on-click": "/home/ze/.config/waybar/scripts/volume_control.sh toggle",
+    "on-scroll-up": "/home/ze/.config/waybar/scripts/volume_control.sh up",
+    "on-scroll-down": "/home/ze/.config/waybar/scripts/volume_control.sh down"
+  },
+
+  "hyprland/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", ""],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+
+  "pulseaudio": {
+    "format-source": "{volume}% "
+  },
+
+  "custom/now-playing": {
+    "format": "{}",
+    "interval": 100,
+    "exec": "~/.config/waybar/scripts/now-playing.sh",
+    "return-type": "text",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+
+  "custom/lframe": {
+    "format": "|"
+  },
+
+  "custom/rframe": {
+    "format": "|"
+  },
+
+  "custom/space": {
+    "format": " "
+  },
+
+  "custom/tire": {
+    "format": "-"
+  },
+
+  "custom/playerctl": {
+    "format": "{}",
+    "return-type": "json",
+    "max-length": 18,
+    "exec": "~/.config/waybar/scripts/playerctl_scroll.sh",
+    "on-click": "playerctl -i firefox previous",
+    "on-click-right": "playerctl -i firefox next",
+    "on-click-middle": "playerctl -i firefox play-pause",
+    "on-scroll-up": "playerctl -i firefox volume 0.05+",
+    "on-scroll-down": "playerctl -i firefox volume 0.05-"
+  }
+}

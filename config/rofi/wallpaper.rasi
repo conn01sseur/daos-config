@@ -1,0 +1,67 @@
+configuration {
+  show-icons: true;
+}
+
+* {
+  font: "Jetbrains Mono 10";
+  background: #000000;
+  foreground: #ffffff;
+  accent: #8b5cf6;
+  spacing: 8px;
+}
+
+window {
+  width: 70%;
+  background-color: @background;
+  border: 2px;
+  border-color: @accent;
+  border-radius: 10px;
+}
+
+mainbox {
+  padding: 12px;
+  background-color: @background;
+}
+
+inputbar {
+  padding: 6px;
+  spacing: 6px;
+  background-color: @background;
+}
+
+prompt {
+  text-color: @foreground;
+}
+
+entry {
+  text-color: @foreground;
+  background-color: @background;
+}
+
+listview {
+  columns: 3;
+  lines: 3;
+  fixed-height: false;
+  scrollbar: false;
+  background-color: @background;
+}
+
+element {
+  padding: 6px;
+  border-radius: 8px;
+  background-color: @background;
+}
+
+element selected {
+  background-color: @accent;
+  text-color: #000000;
+}
+
+element-icon {
+  size: 12em;
+}
+
+element-text {
+  text-color: @foreground;
+  font: "Jetbrains Mono 8";
+}
