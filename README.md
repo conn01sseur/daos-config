@@ -1,2 +1,11 @@
 # daos-config
-<a href="https://ibb.co/cKSrdJmQ"><img src="https://i.ibb.co/cKSrdJmQ/tdwikc3segig1.png" alt="tdwikc3segig1" border="0"></a>
+<a>
+  <img src="https://i.ibb.co/rRVTdddH/photo-2026-02-28-22-15-44.jpg" width="200" height: auto alt="photo-2026-02-28-22-15-44" border="0" align="left">По идее оно основана на Arch Linux(ну как <a href="https://manjaro.org/">БaМjaro</a>) и под граф. Hyprland. И тут находится его конфиг файл.
+</a>
+<br />
+<a target='_blank' href='https://dedupelist.com/'>
+</a>
+<br />
+<a href="https://ibb.co/cKSrdJmQ">
+  <img src="https://i.ibb.co/MyxCLnX7/tdwikc3segig1.png" alt="tdwikc3segig1" border="0">
+</a>
